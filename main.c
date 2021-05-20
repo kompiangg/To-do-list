@@ -2,7 +2,8 @@
 
 int main() {
     int menu;
-    
+    FILE *to_do_list = fopen("to_do_list.txt", "a+");
+
     while(1) {
         puts("==============");
         puts("| MENU UTAMA |");
@@ -17,7 +18,7 @@ int main() {
         getchar();
 
         if (menu == 1) {
-
+        
         }
         else if (menu == 2) {
             // Tampilkan semua to-do list yang ada dengan urutan
@@ -39,7 +40,7 @@ int main() {
                         puts("=====================");
                         puts("|    MENU UPDATE    |");
                         puts("=====================");
-                        puts(" 1. Nama tugas");
+                        puts(" 1. Nama tugas");\
                         puts(" 2. Kelompok tugas");
                         puts(" 3. Prioritas");
                         puts(" 4. Deadline");
