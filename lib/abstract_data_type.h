@@ -6,6 +6,6 @@
         int prioritas;
         int dl_dd, dl_mm, dl_yyyy;
     } to_do_list_node;
-
+ 
     // Tambahkan ADT yang kalian perlukan
 #endif

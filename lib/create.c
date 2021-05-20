@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "create.h"
-#include "abstract_data_type.h"
 
 to_do_list_node *init_linked_list(to_do_list_node temp) {
     to_do_list_node *head = NULL, *temp_ptr, *temp_head;
