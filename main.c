@@ -1,8 +1,10 @@
 #include <stdio.h>
+#include "lib/our_module.h"
 
 int main() {
     int menu;
-    FILE *to_do_list = fopen("to_do_list.txt", "a+");
+    FILE *to_do_list_file = fopen("to_do_list.txt", "a+");
+    to_do_list_node temp;
 
     while(1) {
         puts("==============");
@@ -24,13 +26,13 @@ int main() {
             // Tampilkan semua to-do list yang ada dengan urutan
             // User akan memilih nomor tersebut
             while (1) {
-                puts("==============");
-                puts("| MENU EDIT |");
-                puts("==============");
+                puts("===============");
+                puts("|  MENU EDIT  |");
+                puts("===============");
                 puts(" 1. Update");
                 puts(" 2. Remove");
                 puts(" 0. Exit");
-                puts("==============");
+                puts("===============");
                 printf("Input : ");
                 scanf("%d", &menu);
                 getchar();
@@ -40,7 +42,7 @@ int main() {
                         puts("=====================");
                         puts("|    MENU UPDATE    |");
                         puts("=====================");
-                        puts(" 1. Nama tugas");\
+                        puts(" 1. Nama tugas");
                         puts(" 2. Kelompok tugas");
                         puts(" 3. Prioritas");
                         puts(" 4. Deadline");
