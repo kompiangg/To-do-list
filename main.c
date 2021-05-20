@@ -3,8 +3,6 @@
 
 int main() {
     int menu;
-    FILE *to_do_list_file = fopen("to_do_list.txt", "a+");
-    to_do_list_node temp;
 
     while(1) {
         puts("==============");
