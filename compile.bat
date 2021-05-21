@@ -1,1 +1,1 @@
-gcc main.c lib\create.c -o main && .\main
+gcc main.c lib\create.c lib\universal_function.c -o main && .\main
