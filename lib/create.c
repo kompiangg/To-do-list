@@ -2,50 +2,74 @@
 #include <stdlib.h>
 #include <string.h>
 #include "create.h"
+#include "universal_function.h"
 
 To_Do_List_Node *makeNode(To_Do_List_Node temp_input) {
-    To_Do_List_Node *head = NULL, *temp_ptr, *temp_head;
+    To_Do_List_Node *head, *temp_head;
     
-    temp_ptr = (To_Do_List_Node *) malloc(sizeof(To_Do_List_Node));
-    temp_ptr->next = NULL;
-    temp_ptr->prev = NULL;
-    strcpy(temp_ptr->nama_tugas, temp_input.nama_tugas);
-    strcpy(temp_ptr->kelompok_tugas, temp_input.kelompok_tugas);
-    temp_ptr->prioritas = temp_input.prioritas;
-    temp_ptr->dl_dd = temp_input.dl_dd;
-    temp_ptr->dl_mm = temp_input.dl_mm;
-    temp_ptr->dl_yyyy = temp_input.dl_yyyy;
+    head = (To_Do_List_Node *) malloc(sizeof(To_Do_List_Node));
+    head->next = NULL;
+    head->prev = NULL;
+    strcpy(head->nama_tugas, temp_input.nama_tugas);
+    strcpy(head->kelompok_tugas, temp_input.kelompok_tugas);
+    head->prioritas = temp_input.prioritas;
+    head->dl_dd = temp_input.dl_dd;
+    head->dl_mm = temp_input.dl_mm;
+    head->dl_yyyy = temp_input.dl_yyyy;
 
-    if(head == NULL) head = temp_ptr;
-    else {
-        temp_head = head;
-        while (temp_head->next != NULL) temp_head = temp_head->next;
-        temp_head->next = temp_ptr;
-        temp_ptr->prev = temp_head;
-    }
     return head;
 }
 
-void insert(To_Do_List_Node *main_node, To_Do_List_Node temp_input) {
-    
+void insert(To_Do_List_Node ***main_node, To_Do_List_Node temp_input) {
+    To_Do_List_Node *head_input_node, *temp_main_node = **main_node;
+    head_input_node = makeNode(temp_input);
+    while(temp_main_node->next != NULL) temp_main_node = temp_main_node->next;
+    temp_main_node->next = head_input_node;
+    head_input_node->prev = temp_main_node;
 }
 
 void helpAddProcess(int menu) {
     if (menu == 1) {
-        
+        puts("\n\n== Nama Tugas ==");
+        puts("Field ini hendaknya diisikan");
+        puts("nama tugas yang akan dikerjakan");
+        puts("Contoh : Membuatkan pacar kejutan\n\n");
     }
     else if (menu == 2) {
-
+        puts("\n\n== Kelompok Tugas ==");
+        puts("Field ini dibuat ntuk memudahkan Anda dalam");
+        puts("mengelompokkan tugas yang memiliki");
+        puts("kesamaan menurut Anda dalam segi");
+        puts("asal tugas, nama, dll");
+        puts("Contoh : Alpro");
+        puts("\n== CATATAN ==");
+        puts("Pengelompokan ini tidak sensitive case");
+        puts("Alpro dan alpro akan dianggap sama");
+        puts("\n");
     }
     else if (menu == 3) {
-
+        puts("\n\n== Prioritas ==");
+        puts("Untuk membantu Anda dalam mengatur jadwal");
+        puts("prioritas ini dapat menyimpan tingkat");
+        puts("prioritas agar dapat ditampilkan nantinya");
+        puts("== Tingkat-tingkat prioritas dari 1 - 4");
+        puts("1. Penting & urgent");
+        puts("2. Tidak penting & urgent");
+        puts("3. Penting & tidak urgent");
+        puts("4. Tidak penting & tidak urgent\n\n");
     }
     else if (menu == 4) {
-
+        puts("== Deadline ==");
+        puts("Deadline membantu anda untuk menyimpan");
+        puts("batas akhir dari pengumpulan atau batas selesai");
+        puts("tugas Anda");
+        puts("Format yang dapat diterima program ini adalah");
+        puts("dd/mm/yy");
+        puts("Contoh : 22/05/2021\n\n");
     }
 }
 
-void addProcess(To_Do_List_Node *main_node) {
+void addProcess(To_Do_List_Node **main_node) {
     To_Do_List_Node temp_input;
     char temp_text_prioritas[50], temp_text_date[50], *token;
     int back, back_to = 1;
@@ -80,7 +104,7 @@ void addProcess(To_Do_List_Node *main_node) {
                 continue;
             }
             else if (strcmp(temp_input.nama_tugas, "-b") == 0) {
-                printf("\nIni adalah field pertama, anda tidak dapat menggunakan menu ini");
+                printf("\nIni adalah field pertama, anda tidak dapat menggunakan menu ini\n");
                 break;
             }
             break;
@@ -111,10 +135,14 @@ void addProcess(To_Do_List_Node *main_node) {
         
         while(1) {
             if (back == 0 && back_to == 0) {
-                printf(" * Prioritas : ");
+                printf(" * Prioritas (1-4): ");
                 scanf("%[^\n]", temp_text_prioritas);
                 getchar();
                 temp_input.prioritas = atoi(temp_text_prioritas);
+                if (temp_input.prioritas < 1 && temp_input.prioritas > 4) {
+                    puts("\nMasukan angka antara 1 hingga 4\n");
+                    continue;
+                }
             }
             if (strcmp(temp_text_prioritas, "-h") == 0) {
                 helpAddProcess(3);
@@ -159,4 +187,6 @@ void addProcess(To_Do_List_Node *main_node) {
         if (back == 1) continue;
         break;
     }
+
+    *main_node == NULL ? *main_node = makeNode(temp_input) : insert(&main_node, temp_input);
 }
