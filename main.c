@@ -1,10 +1,11 @@
 #include <stdio.h>
 #include "lib/our_module.h"
 
+To_Do_List_Node *main_node = NULL;
+
 int main() {
     int menu;
-    to_do_list_node ayam;
-    init_linked_list(ayam);
+
     while(1) {
         puts("==============");
         puts("| MENU UTAMA |");

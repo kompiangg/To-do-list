@@ -1,11 +1,10 @@
 #ifndef __DATA_TYPE_
     #define __DATA_TYPE_
-    typedef struct to_do_list_node {
-        struct to_do_list_node *next, *prev;
+    typedef struct To_Do_List_Node {
+        struct To_Do_List_Node *next, *prev;
         char nama_tugas[50], kelompok_tugas[50];
         int prioritas;
         int dl_dd, dl_mm, dl_yyyy;
-    } to_do_list_node;
- 
+    } To_Do_List_Node;
     // Tambahkan ADT yang kalian perlukan
 #endif
