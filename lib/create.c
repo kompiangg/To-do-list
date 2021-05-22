@@ -16,11 +16,10 @@ To_Do_List_Node *makeNode(To_Do_List_Node temp_input) {
     head->dl_dd = temp_input.dl_dd;
     head->dl_mm = temp_input.dl_mm;
     head->dl_yyyy = temp_input.dl_yyyy;
-
     return head;
 }
 
-void initToDoListFromFile(To_Do_List_Node **main_node) {
+void initToDoListFromFile(To_Do_List_Node **main_node, date date_now) {
     FILE *init_node_from_file = fopen("file\\to_do_list.txt", "r");
     if (init_node_from_file != NULL) {
         To_Do_List_Node temp_node;
@@ -35,14 +34,19 @@ void initToDoListFromFile(To_Do_List_Node **main_node) {
             token = strtok(NULL, "|");
             temp_node.prioritas = atoi(token);
             token = strtok(NULL, "|");
+            temp_node.day_left = atoi(token);
+            token = strtok(NULL, "|");
             token = strtok(token, "/");
             temp_node.dl_dd = atoi(token);
             token = strtok(NULL, "/");
             temp_node.dl_mm = atoi(token);
             token = strtok(NULL, "/");
             temp_node.dl_yyyy = atoi(token);
+            temp_node.day_left = (temp_node.dl_dd - date_now.dd) +\
+                                      30 * (temp_node.dl_mm - date_now.mm) + \
+                                      365 * (temp_node.dl_yyyy - date_now.yyyy);
+            *main_node == NULL ? *main_node = makeNode(temp_node) : insert(&main_node, temp_node);
         }
-        *main_node = makeNode(temp_node);
     }
     fclose(init_node_from_file);
 }
@@ -104,7 +108,7 @@ void saveToFile(To_Do_List_Node *temp_input) {
     fclose(write_to_file);
 }
 
-void addProcess(To_Do_List_Node **main_node) {
+void addProcess(To_Do_List_Node **main_node, date date_now) {
     To_Do_List_Node temp_input;
     char temp_text_prioritas[50], temp_text_date[50], *token;
     int back, back_to = 1;
@@ -207,6 +211,16 @@ void addProcess(To_Do_List_Node **main_node) {
                 temp_input.dl_mm = atoi(token);
                 token = strtok(NULL, "/");
                 temp_input.dl_yyyy = atoi(token);
+
+                if ((temp_input.dl_dd < date_now.dd && temp_input.dl_mm < date_now.mm) \
+                    || temp_input.dl_yyyy < date_now.yyyy) {
+                        puts("\n=== TIDAK BOLEH MEMASUKAN TANGGAL ===");
+                        puts("  === SEBELUM TANGGAL HARI INI ===\n");
+                        continue;
+                    }
+                temp_input.day_left = (temp_input.dl_dd - date_now.dd) +\
+                                      30 * (temp_input.dl_mm - date_now.mm) + \
+                                      365 * (temp_input.dl_yyyy - date_now.yyyy);
             }
             if (strcmp(temp_text_date, "-h") == 0) {
                 helpAddProcess(4);

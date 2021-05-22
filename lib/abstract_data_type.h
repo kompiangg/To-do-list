@@ -5,6 +5,12 @@
         char nama_tugas[50], kelompok_tugas[50];
         int prioritas;
         int dl_dd, dl_mm, dl_yyyy;
+        int day_left;
     } To_Do_List_Node;
+    
     // Tambahkan ADT yang kalian perlukan
+
+    typedef struct date {
+        int dd, mm, yyyy;
+    } date;
 #endif
