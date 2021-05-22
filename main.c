@@ -1,10 +1,13 @@
 #include <stdio.h>
+#include <string.h>
 #include "lib/our_module.h"
 
 To_Do_List_Node *main_node = NULL;
 
 int main() {
     int menu;
+
+    initToDoListFromFile(&main_node);
     while(1) {
         puts("==============");
         puts("| MENU UTAMA |");

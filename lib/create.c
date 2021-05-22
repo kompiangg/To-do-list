@@ -20,6 +20,33 @@ To_Do_List_Node *makeNode(To_Do_List_Node temp_input) {
     return head;
 }
 
+void initToDoListFromFile(To_Do_List_Node **main_node) {
+    FILE *init_node_from_file = fopen("file\\to_do_list.txt", "r");
+    if (init_node_from_file != NULL) {
+        To_Do_List_Node temp_node;
+        char temp[200];
+        char *token;
+
+        while(fgets(temp, 200, init_node_from_file) != NULL) {
+            token = strtok(temp, "|");
+            strcpy(temp_node.nama_tugas, token);
+            token = strtok(NULL, "|");
+            strcpy(temp_node.kelompok_tugas, token);
+            token = strtok(NULL, "|");
+            temp_node.prioritas = atoi(token);
+            token = strtok(NULL, "|");
+            token = strtok(token, "/");
+            temp_node.dl_dd = atoi(token);
+            token = strtok(NULL, "/");
+            temp_node.dl_mm = atoi(token);
+            token = strtok(NULL, "/");
+            temp_node.dl_yyyy = atoi(token);
+        }
+        *main_node = makeNode(temp_node);
+    }
+    fclose(init_node_from_file);
+}
+
 void insert(To_Do_List_Node ***main_node, To_Do_List_Node temp_input) {
     To_Do_List_Node *head_input_node, *temp_main_node = **main_node;
     head_input_node = makeNode(temp_input);
@@ -53,13 +80,13 @@ void helpAddProcess(int menu) {
         puts("prioritas ini dapat menyimpan tingkat");
         puts("prioritas agar dapat ditampilkan nantinya");
         puts("== Tingkat-tingkat prioritas dari 1 - 4");
-        puts("1. Penting & urgent");
-        puts("2. Tidak penting & urgent");
-        puts("3. Penting & tidak urgent");
-        puts("4. Tidak penting & tidak urgent\n\n");
+        puts("1. Penting & mendesak");
+        puts("2. Tidak penting & mendesak");
+        puts("3. Penting & tidak mendesak");
+        puts("4. Tidak penting & tidak mendesak\n\n");
     }
     else if (menu == 4) {
-        puts("== Deadline ==");
+        puts("\n\n== Deadline ==");
         puts("Deadline membantu anda untuk menyimpan");
         puts("batas akhir dari pengumpulan atau batas selesai");
         puts("tugas Anda");
@@ -67,6 +94,14 @@ void helpAddProcess(int menu) {
         puts("dd/mm/yy");
         puts("Contoh : 22/05/2021\n\n");
     }
+}
+
+void saveToFile(To_Do_List_Node *temp_input) {
+    FILE *write_to_file = fopen("file\\to_do_list.txt", "a");
+    fprintf(write_to_file, "%s|%s|%d|%d/%d/%d\n", temp_input->nama_tugas, temp_input->kelompok_tugas,\
+                                                  temp_input->prioritas, temp_input->dl_dd,\
+                                                  temp_input->dl_mm, temp_input->dl_yyyy);
+    fclose(write_to_file);
 }
 
 void addProcess(To_Do_List_Node **main_node) {
@@ -188,6 +223,6 @@ void addProcess(To_Do_List_Node **main_node) {
         if (back == 1) continue;
         break;
     }
-
+    saveToFile(&temp_input);
     *main_node == NULL ? *main_node = makeNode(temp_input) : insert(&main_node, temp_input);
 }
