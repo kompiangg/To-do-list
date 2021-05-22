@@ -74,22 +74,23 @@ void addProcess(To_Do_List_Node **main_node) {
     char temp_text_prioritas[50], temp_text_date[50], *token;
     int back, back_to = 1;
 
+    printf("\n  ======= Guide =======  \n");
+    printf("Selamat datang di add proses\n");
+    printf("apabila Anda bingung tentang\n");
+    printf("properti yang akan diisi,\n");
+    printf("Anda dapat menginputkan -h\n");
+    printf("untuk memanggil menu help\n\n");
+    printf("Apabila anda ingin kembali\n");
+    printf("ke menu sebelumnya, Anda\n");
+    printf("dapat menginputkan -b untuk\n");
+    printf("kembali ke menu sebelumnya\n\n");
+    
+    printf("====================\n");
+    printf("| Input to-do list |\n");
+    printf("====================\n");
+
     while (1) {
         back = 0;
-        printf("\n  ======= Guide =======  \n");
-        printf("Selamat datang di add proses\n");
-        printf("apabila Anda bingung tentang\n");
-        printf("properti yang akan diisi,\n");
-        printf("Anda dapat menginputkan -h\n");
-        printf("untuk memanggil menu help\n\n");
-        printf("Apabila anda ingin kembali\n");
-        printf("ke menu sebelumnya, Anda\n");
-        printf("dapat menginputkan -b untuk\n");
-        printf("kembali ke menu sebelumnya\n\n");
-        
-        printf("====================\n");
-        printf("| Input to-do list |\n");
-        printf("====================\n");
 
         if (back_to > 0) back_to--;
 
