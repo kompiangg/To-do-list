@@ -5,15 +5,15 @@
 <p align="center"> Program yang berguna membantu user untuk memanajemen pekerjaan</p>
 <br>
 
-##Program apa ini?
+## Program apa ini?
 ---
 Program ini adalah program yang dapat meningkatkan produktifitas pengguna dengan menggunakan sistem to-do list. Dengan menggunakan to-do list pengguna dapat memanajemen pekerjaan yang akan dilakukan dalam jangka waktu beberapa hari.
 
-##Kenapa program ini dibuat?
+## Kenapa program ini dibuat?
 ---
 Buat final project aja, hehe 😅. Tapi, program ini dapat mengatasi perasaan *gabut*, tetapi secara realitanya kita memiliki banyak pekerjaan dan benefit lainnya yang akan didapatkan pengguna apabila menggunakan program ini.
 
-##Fitur yang dimiliki?
+## Fitur yang dimiliki?
 ---
 * Membuat to-do list dengan properti
     * Nama tugas
@@ -31,7 +31,7 @@ Buat final project aja, hehe 😅. Tapi, program ini dapat mengatasi perasaan *g
         * Siswa waktu
 * Penyimpanan to-do list agar data pengguna tidak hilang saat program dihentikan
 
-##Kenapa ada fitur prioritas?
+## Kenapa ada fitur prioritas?
 ---
 Dengan adanya prioritas, user diharapkan dapat dengan mudah memilih pekerjaan yang akan diselesaikan. Prioritas yang kita gunakan berdasarkan dari 4 kuadran prioritas
 
