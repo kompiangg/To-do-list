@@ -6,7 +6,9 @@ To_Do_List_Node *main_node = NULL;
 
 int main() {
     int menu;
+    date date_now;
 
+    getTheDate(&date_now);
     initToDoListFromFile(&main_node);
     while(1) {
         puts("==============");
@@ -22,7 +24,7 @@ int main() {
         getchar();
 
         if (menu == 1) {
-            addProcess(&main_node);
+            addProcess(&main_node, date_now);
         }
         else if (menu == 2) {
             // Tampilkan semua to-do list yang ada dengan urutan

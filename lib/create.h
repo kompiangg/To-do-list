@@ -6,5 +6,5 @@
     void insert(To_Do_List_Node ***main_node, To_Do_List_Node temp_input);
     void helpAddProcess(int menu);
     void saveToFile(To_Do_List_Node *temp_input);
-    void addProcess(To_Do_List_Node **main_node);
+    void addProcess(To_Do_List_Node **main_node, date date_now);
 #endif
