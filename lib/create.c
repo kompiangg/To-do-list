@@ -19,7 +19,7 @@ To_Do_List_Node *makeNode(To_Do_List_Node temp_input) {
     return head;
 }
 
-void initToDoListFromFile(To_Do_List_Node **main_node) {
+void initToDoListFromFile(To_Do_List_Node **main_node, date date_now) {
     FILE *init_node_from_file = fopen("file\\to_do_list.txt", "r");
     if (init_node_from_file != NULL) {
         To_Do_List_Node temp_node;
@@ -42,8 +42,11 @@ void initToDoListFromFile(To_Do_List_Node **main_node) {
             temp_node.dl_mm = atoi(token);
             token = strtok(NULL, "/");
             temp_node.dl_yyyy = atoi(token);
+            temp_node.day_left = (temp_node.dl_dd - date_now.dd) +\
+                                      30 * (temp_node.dl_mm - date_now.mm) + \
+                                      365 * (temp_node.dl_yyyy - date_now.yyyy);
+            *main_node == NULL ? *main_node = makeNode(temp_node) : insert(&main_node, temp_node);
         }
-        *main_node = makeNode(temp_node);
     }
     fclose(init_node_from_file);
 }
@@ -99,8 +102,8 @@ void helpAddProcess(int menu) {
 
 void saveToFile(To_Do_List_Node *temp_input) {
     FILE *write_to_file = fopen("file\\to_do_list.txt", "a");
-    fprintf(write_to_file, "%s|%s|%d|%d|%d/%d/%d\n", temp_input->nama_tugas, temp_input->kelompok_tugas,\
-                                                  temp_input->prioritas, temp_input->day_left, temp_input->dl_dd,\
+    fprintf(write_to_file, "%s|%s|%d|%d/%d/%d\n", temp_input->nama_tugas, temp_input->kelompok_tugas,\
+                                                  temp_input->prioritas, temp_input->dl_dd,\
                                                   temp_input->dl_mm, temp_input->dl_yyyy);
     fclose(write_to_file);
 }
@@ -209,8 +212,8 @@ void addProcess(To_Do_List_Node **main_node, date date_now) {
                 token = strtok(NULL, "/");
                 temp_input.dl_yyyy = atoi(token);
 
-                if (temp_input.dl_dd < date_now.dd && temp_input.dl_mm < date_now.mm \
-                    && temp_input.dl_yyyy < date_now.yyyy) {
+                if ((temp_input.dl_dd < date_now.dd && temp_input.dl_mm < date_now.mm) \
+                    || temp_input.dl_yyyy < date_now.yyyy) {
                         puts("\n=== TIDAK BOLEH MEMASUKAN TANGGAL ===");
                         puts("  === SEBELUM TANGGAL HARI INI ===\n");
                         continue;

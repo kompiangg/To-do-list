@@ -9,7 +9,7 @@ int main() {
     date date_now;
 
     getTheDate(&date_now);
-    initToDoListFromFile(&main_node);
+    initToDoListFromFile(&main_node, date_now);
     while(1) {
         puts("==============");
         puts("| MENU UTAMA |");
