@@ -2,7 +2,10 @@
 #include <string.h>
 #include "lib/our_module.h"
 
-To_Do_List_Node *main_node = NULL;
+    To_Do_List_Node *main_node = NULL;
+    FILE *fnt;
+    FILE *fnk;
+    char nama_tugas[50], kelompok_tugas[50];
 
 int main() {
     int menu;
@@ -105,7 +108,16 @@ int main() {
                 getchar();
 
                 if (menu == 1) {
-                    
+                    printf("Semua List Yang Ada Di to-do list : \n");
+                    fnt= fopen("nama tugas.txt", "r");
+                            if (fnt == NULL) 
+                            {
+                                printf("\n File Tidak Ditemukan \n");
+                                exit(0);
+                            }
+                        fscanf(fnt, "%s %s", &nama_tugas);
+                        printf("%s %s\n\n", nama_tugas);
+                        fclose(fnt);    
                 }
                 else if (menu == 2) {
 
