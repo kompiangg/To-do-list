@@ -1,6 +1,6 @@
 <br>
 <h1 align="center">Final Project Program</h1>
-<a> <img src="src/card.png" alt="Logo" href="https://github.com/kompiangg/To-do-list"> </a>
+<img src="src/card.png" alt="Program Card">
 <h1 align="center">To-do List Program</h1>
 <p align="center"> Program yang berguna membantu user untuk memanajemen pekerjaan</p>
 <br>
