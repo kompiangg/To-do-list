@@ -23,6 +23,7 @@ int main() {
 
     getTheDate(&date_now);
     initToDoListFromFile(&main_node, date_now);
+    //test
     while(1) {
         puts("==============");
         puts("| MENU UTAMA |");
@@ -156,7 +157,7 @@ int main() {
                 getchar();
 
                 if (menu == 1) {
-                    
+
                 }
                 else if (menu == 2) {
 
