@@ -1,2 +1,4 @@
 FP Alpro|kuliah|1|25/5/2021
 Matdis|kuliah|1|24/5/2021
+ayam|goreng|1|1/1/2022
+ayam|goreng|1|1/1/2021

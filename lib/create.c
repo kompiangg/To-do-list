@@ -9,7 +9,6 @@ To_Do_List_Node *makeNode(To_Do_List_Node temp_input) {
     
     head = (To_Do_List_Node *) malloc(sizeof(To_Do_List_Node));
     head->next = NULL;
-    head->prev = NULL;
     strcpy(head->nama_tugas, temp_input.nama_tugas);
     strcpy(head->kelompok_tugas, temp_input.kelompok_tugas);
     head->prioritas = temp_input.prioritas;
@@ -19,7 +18,7 @@ To_Do_List_Node *makeNode(To_Do_List_Node temp_input) {
     return head;
 }
 
-void initToDoListFromFile(To_Do_List_Node **main_node, date date_now) {
+void initToDoListFromFile(To_Do_List_Node *main_node) {
     FILE *init_node_from_file = fopen("file\\to_do_list.txt", "r");
     if (init_node_from_file != NULL) {
         To_Do_List_Node temp_node;
@@ -34,29 +33,23 @@ void initToDoListFromFile(To_Do_List_Node **main_node, date date_now) {
             token = strtok(NULL, "|");
             temp_node.prioritas = atoi(token);
             token = strtok(NULL, "|");
-            temp_node.day_left = atoi(token);
-            token = strtok(NULL, "|");
             token = strtok(token, "/");
             temp_node.dl_dd = atoi(token);
             token = strtok(NULL, "/");
             temp_node.dl_mm = atoi(token);
             token = strtok(NULL, "/");
             temp_node.dl_yyyy = atoi(token);
-            temp_node.day_left = (temp_node.dl_dd - date_now.dd) +\
-                                      30 * (temp_node.dl_mm - date_now.mm) + \
-                                      365 * (temp_node.dl_yyyy - date_now.yyyy);
-            *main_node == NULL ? *main_node = makeNode(temp_node) : insert(&main_node, temp_node);
+            main_node == NULL ? main_node = makeNode(temp_node) : insert(main_node, temp_node);
         }
     }
     fclose(init_node_from_file);
 }
 
-void insert(To_Do_List_Node ***main_node, To_Do_List_Node temp_input) {
-    To_Do_List_Node *head_input_node, *temp_main_node = **main_node;
+void insert(To_Do_List_Node *main_node, To_Do_List_Node temp_input) {
+    To_Do_List_Node *head_input_node, *temp_main_node = main_node;
     head_input_node = makeNode(temp_input);
     while(temp_main_node->next != NULL) temp_main_node = temp_main_node->next;
     temp_main_node->next = head_input_node;
-    head_input_node->prev = temp_main_node;
 }
 
 void helpAddProcess(int menu) {
@@ -108,10 +101,12 @@ void saveToFile(To_Do_List_Node *temp_input) {
     fclose(write_to_file);
 }
 
-void addProcess(To_Do_List_Node **main_node, date date_now) {
+void addProcess(To_Do_List_Node *main_node) {
     To_Do_List_Node temp_input;
+    date date_now;
     char temp_text_prioritas[50], temp_text_date[50], *token;
     int back, back_to = 1;
+    getTheDate(&date_now);
 
     printf("\n  ======= Guide =======  \n");
     printf("Selamat datang di add proses\n");
@@ -213,14 +208,11 @@ void addProcess(To_Do_List_Node **main_node, date date_now) {
                 temp_input.dl_yyyy = atoi(token);
 
                 if ((temp_input.dl_dd < date_now.dd && temp_input.dl_mm < date_now.mm) \
-                    || temp_input.dl_yyyy < date_now.yyyy) {
+                    && temp_input.dl_yyyy < date_now.yyyy) {
                         puts("\n=== TIDAK BOLEH MEMASUKAN TANGGAL ===");
                         puts("  === SEBELUM TANGGAL HARI INI ===\n");
                         continue;
                     }
-                temp_input.day_left = (temp_input.dl_dd - date_now.dd) +\
-                                      30 * (temp_input.dl_mm - date_now.mm) + \
-                                      365 * (temp_input.dl_yyyy - date_now.yyyy);
             }
             if (strcmp(temp_text_date, "-h") == 0) {
                 helpAddProcess(4);
@@ -238,5 +230,5 @@ void addProcess(To_Do_List_Node **main_node, date date_now) {
         break;
     }
     saveToFile(&temp_input);
-    *main_node == NULL ? *main_node = makeNode(temp_input) : insert(&main_node, temp_input);
+    main_node == NULL ? main_node = makeNode(temp_input) : insert(main_node, temp_input);
 }

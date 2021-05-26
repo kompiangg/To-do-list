@@ -3,4 +3,5 @@
     #include "abstract_data_type.h"
     #include "create.h"
     #include "universal_function.h"
+    #include "view.h"
 #endif
