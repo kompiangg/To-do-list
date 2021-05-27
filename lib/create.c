@@ -5,7 +5,7 @@
 #include "universal_function.h"
 
 To_Do_List_Node *makeNode(To_Do_List_Node temp_input) {
-    To_Do_List_Node *head, *temp_head;
+    To_Do_List_Node *head;
     
     head = (To_Do_List_Node *) malloc(sizeof(To_Do_List_Node));
     head->next = NULL;
@@ -18,13 +18,12 @@ To_Do_List_Node *makeNode(To_Do_List_Node temp_input) {
     return head;
 }
 
-void initToDoListFromFile(To_Do_List_Node *main_node) {
+void initToDoListFromFile(To_Do_List_Node **main_node) {
     FILE *init_node_from_file = fopen("file\\to_do_list.txt", "r");
     if (init_node_from_file != NULL) {
         To_Do_List_Node temp_node;
         char temp[200];
         char *token;
-
         while(fgets(temp, 200, init_node_from_file) != NULL) {
             token = strtok(temp, "|");
             strcpy(temp_node.nama_tugas, token);
@@ -39,17 +38,17 @@ void initToDoListFromFile(To_Do_List_Node *main_node) {
             temp_node.dl_mm = atoi(token);
             token = strtok(NULL, "/");
             temp_node.dl_yyyy = atoi(token);
-            main_node == NULL ? main_node = makeNode(temp_node) : insert(main_node, temp_node);
+            *main_node == NULL ? *main_node = makeNode(temp_node) : insert(main_node, temp_node);
         }
     }
     fclose(init_node_from_file);
 }
 
-void insert(To_Do_List_Node *main_node, To_Do_List_Node temp_input) {
-    To_Do_List_Node *head_input_node, *temp_main_node = main_node;
-    head_input_node = makeNode(temp_input);
+void insert(To_Do_List_Node **main_node, To_Do_List_Node temp_input) {
+    To_Do_List_Node *tail_input_node, *temp_main_node = *main_node;
+    tail_input_node = makeNode(temp_input);
     while(temp_main_node->next != NULL) temp_main_node = temp_main_node->next;
-    temp_main_node->next = head_input_node;
+    temp_main_node->next = tail_input_node;
 }
 
 void helpAddProcess(int menu) {
@@ -101,7 +100,7 @@ void saveToFile(To_Do_List_Node *temp_input) {
     fclose(write_to_file);
 }
 
-void addProcess(To_Do_List_Node *main_node) {
+void addProcess(To_Do_List_Node **main_node) {
     To_Do_List_Node temp_input;
     date date_now;
     char temp_text_prioritas[50], temp_text_date[50], *token;
@@ -139,12 +138,13 @@ void addProcess(To_Do_List_Node *main_node) {
                 continue;
             }
             else if (strcmp(temp_input.nama_tugas, "-b") == 0) {
-                printf("\nIni adalah field pertama, anda tidak dapat menggunakan menu ini\n");
+                back = 1;
                 break;
             }
             break;
         }
 
+        if (back == 1) break;
         if (back_to > 0) back_to--;
 
         while (1) {
@@ -229,6 +229,8 @@ void addProcess(To_Do_List_Node *main_node) {
         if (back == 1) continue;
         break;
     }
-    saveToFile(&temp_input);
-    main_node == NULL ? main_node = makeNode(temp_input) : insert(main_node, temp_input);
+    if (back == 0) {
+        saveToFile(&temp_input);
+        *main_node == NULL ? *main_node = makeNode(temp_input) : insert(main_node, temp_input);
+    }
 }

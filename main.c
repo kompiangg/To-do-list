@@ -2,14 +2,13 @@
 #include <string.h>
 #include "lib/our_module.h"
 
-To_Do_List_Node *main_node = NULL;
-
 int main() {
     int menu;
+    To_Do_List_Node *main_node = NULL;
     // date date_now;
 
     // getTheDate(&date_now);
-    initToDoListFromFile(main_node);
+    initToDoListFromFile(&main_node);
     while(1) {
         puts("==============");
         puts("| MENU UTAMA |");
@@ -24,12 +23,13 @@ int main() {
         getchar();
 
         if (menu == 1) {
-            addProcess(main_node);
+            addProcess(&main_node);
         }
         else if (menu == 2) {
             // Tampilkan semua to-do list yang ada dengan urutan
             // User akan memilih nomor tersebut
             while (1) {
+                viewAll(main_node, 0);
                 puts("===============");
                 puts("|  MENU EDIT  |");
                 puts("===============");
@@ -105,19 +105,8 @@ int main() {
                 getchar();
 
                 if (menu == 1) {
-                    To_Do_List_Node *temp = main_node;
-                    int nomor = 1;
-                    while (temp != NULL) {
-                        printf("\n%d. Nama tugas    : %s\n", nomor, temp->nama_tugas);
-                        printf("   Nama kelompok : %s\n", temp->kelompok_tugas);
-                        printf("   Prioritas     : %s\n", temp->prioritas);
-                        printf("   Deadline      : %d/%d/%d\n", temp->dl_dd, temp->dl_mm, temp->dl_yyyy);
-                        printf("   Sisa Waktu    : %d\n\n", dayLeft(temp));
-                        temp = temp->next;
-                        nomor++;
-                    }
+                    viewAll(main_node, 0);
                 }
-                // viewAll(main_node);
                 else if (menu == 2) {
                     while(1) {
                         puts("=========================");
