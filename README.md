@@ -12,6 +12,7 @@ Program ini adalah program yang dapat meningkatkan produktifitas pengguna dengan
 Buat final project aja, hehe 😅. Tapi, program ini dapat mengatasi perasaan *gabut*, tetapi secara realitanya kita memiliki banyak pekerjaan dan benefit lainnya yang akan didapatkan pengguna apabila menggunakan program ini.
 
 ## Fitur yang dimiliki?
+
 * Membuat to-do list dengan properti
     * Nama tugas
     * Kelompok tugas (berfungsi untuk mengelompokan tugas)

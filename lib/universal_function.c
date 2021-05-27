@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <time.h>
+#include <ctype.h>
 #include "universal_function.h"
 
 void clear() {
@@ -17,4 +18,9 @@ void getTheDate(date *date_now) {
     date_now->dd = time_now_converted->tm_mday;
     date_now->mm = time_now_converted->tm_mon + 1;
     date_now->yyyy = time_now_converted->tm_year + 1900;
+}
+
+char *lowerTheSentence(char *sentence) {
+    for (int i = 0 ; sentence[i] ; i++) sentence[i] = tolower(sentence[i]);
+    return sentence;
 }

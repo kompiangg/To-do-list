@@ -2,28 +2,14 @@
 #include <string.h>
 #include "lib/our_module.h"
 
-To_Do_List_Node *main_node = NULL, *temp;
-int edit_no;
-char temp_text_prioritas[5], temp_text_date[10], *token;
-
-void view(To_Do_List_Node *main_node){
-    int no_tugas = 1;
-    printf("\nIsi Data : \n");
-    while(main_node != NULL){
-        printf("\n%d. nama tugas : %s", no_tugas, main_node->nama_tugas);
-        main_node = main_node->next;
-        no_tugas++;
-    }
-    puts(" ");
-}
-
 int main() {
     int menu;
-    date date_now;
+    To_Do_List_Node *main_node = NULL;
+    // date date_now;
+
 
     getTheDate(&date_now);
     initToDoListFromFile(&main_node, date_now);
-    //test
     while(1) {
         puts("==============");
         puts("| MENU UTAMA |");
@@ -38,7 +24,7 @@ int main() {
         getchar();
 
         if (menu == 1) {
-            addProcess(&main_node, date_now);
+            addProcess(&main_node);
         }
         else if (menu == 2) {
             clear();
@@ -53,6 +39,7 @@ int main() {
                 temp = temp->next;
             }
             while (1) {
+                viewAll(main_node, 0);
                 puts("===============");
                 puts("|  MENU EDIT  |");
                 puts("===============");
@@ -157,20 +144,46 @@ int main() {
                 getchar();
 
                 if (menu == 1) {
-
+                    viewAll(main_node, 0);
                 }
                 else if (menu == 2) {
-
+                    while(1) {
+                        puts("=========================");
+                        puts("|     Cari Spesifik     |");
+                        puts("=========================");
+                        puts(" 1. Nama tugas");
+                        puts(" 2. Kelompok tugas");
+                        puts(" 0. Exit");
+                        puts("=========================");
+                        printf("Input : ");
+                        scanf("%d", &menu);
+                        getchar();
+                    
+                        if (menu > 0 && menu < 3) {
+                            viewSpecific(main_node, menu);
+                        }
+                        else if (menu == 0) {
+                            break;
+                        }
+                        else {
+                            puts("\nPilih antara angka 0 hingga 2");
+                            getchar();
+                            continue;
+                        }
+                    }
                 }
                 else if (menu == 3) {
 
                 }
                 else if (menu == 4) {
-
+                    sortPriority(main_node);
+                }
+                else if (menu == 5) {
+                    sortDeadline(main_node);
                 }
                 else if (menu == 0) break;
                 else {
-                    puts("\nPilih antara angka 0 hingga 4");
+                    puts("\nPilih antara angka 0 hingga 5");
                     getchar();
                     continue;
                 }
