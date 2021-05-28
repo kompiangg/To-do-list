@@ -3,9 +3,7 @@
 #include "lib/our_module.h"
 
     To_Do_List_Node *main_node = NULL;
-    FILE *fnt;
-    FILE *fnk;
-    char nama_tugas[50], kelompok_tugas[50];
+    
 
 int main() {
     int menu;
