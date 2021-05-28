@@ -8,6 +8,7 @@
     void swapValueLinkedList(To_Do_List_Node **node1, To_Do_List_Node **node2);
     void copyLinkedList(To_Do_List_Node **copied_main_node, To_Do_List_Node *temp);
     void selectionSortList(To_Do_List_Node **main_node, int menu);
+    void sortKelompok(To_Do_List_Node *main_node);
     void sortPriority(To_Do_List_Node *main_node);
     void sortDeadline(To_Do_List_Node *main_node);
 #endif
