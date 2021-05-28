@@ -79,6 +79,38 @@ int main() {
                     }
                 }
                 else if (menu == 2) {
+                    	while(1){
+                        puts("=====================");
+                        puts("|    MENU REMOVE    |");
+                        puts("=====================");
+   						puts(" 1. Remove Nama tugas");
+                        puts(" 2. Remove Kelompok tugas");
+                        puts(" 3. Remove Prioritas");
+                        puts(" 4. Remove Deadline");
+                        puts(" 0. Exit");
+                        puts("=====================");
+                        printf("Input : ");
+                        scanf("%d", &menu);
+                        getchar();
+                        if (menu == 1) {
+                            
+                        }
+                        else if (menu == 2) {
+                          
+                        }
+                        else if (menu == 3) {
+
+                        }
+                        else if (menu == 4) {
+
+                        }
+                        else if (menu == 0) {
+                            puts("\nPilih antara angka 0 hingga 2");
+                        }
+                        else {
+
+                        }
+                    }                       
 
                 }
                 else if (menu == 0) {
@@ -108,16 +140,7 @@ int main() {
                 getchar();
 
                 if (menu == 1) {
-                    printf("Semua List Yang Ada Di to-do list : \n");
-                    fnt= fopen("nama tugas.txt", "r");
-                            if (fnt == NULL) 
-                            {
-                                printf("\n File Tidak Ditemukan \n");
-                                exit(0);
-                            }
-                        fscanf(fnt, "%s %s", &nama_tugas);
-                        printf("%s %s\n\n", nama_tugas);
-                        fclose(fnt);    
+                      
                 }
                 else if (menu == 2) {
 
