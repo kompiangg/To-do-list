@@ -41,7 +41,7 @@ void viewAll(To_Do_List_Node *main_node, int menu) {
         printf("%d. Nama tugas    : %s\n", nomor, temp->nama_tugas);
         printf("   Nama kelompok : %s\n", temp->kelompok_tugas);
         printf("   Prioritas     : %d\n", temp->prioritas);
-        printf("   Deadline      : %d/%d/%d\n", temp->dl_dd, temp->dl_mm, temp->dl_yyyy);
+        printf("   Deadline      : %02d/%02d/%d\n", temp->dl_dd, temp->dl_mm, temp->dl_yyyy);
         if (day_left >= 0) printf("   Sisa Waktu    : %d hari\n", day_left);
         else printf("   Sisa Waktu    : TERLAMBAT %d hari\n", abs(day_left));
         temp = temp->next;
