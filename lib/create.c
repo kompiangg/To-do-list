@@ -223,7 +223,7 @@ void addProcess(To_Do_List_Node **main_node) {
                 token = strtok(NULL, "/");
                 temp_input.dl_yyyy = atoi(token);
 
-                if ((temp_input.dl_dd < date_now.dd && temp_input.dl_mm < date_now.mm) \
+                if ((temp_input.dl_dd < date_now.dd || temp_input.dl_mm < date_now.mm) \
                     && temp_input.dl_yyyy < date_now.yyyy) {
                         puts("\n=====================================");
                         puts("=== TIDAK BOLEH MEMASUKAN TANGGAL ===");
