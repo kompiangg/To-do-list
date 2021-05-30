@@ -63,3 +63,4 @@ $RECYCLE.BIN/
 #opang's environmet should ignore
 *.exe
 test.*
+!main.exe
