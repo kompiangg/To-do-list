@@ -20,7 +20,10 @@ void viewAll(To_Do_List_Node *main_node, int menu) {
     while (temp != NULL) {
         // Menu 3 (Sort menurut kelompok)
         if (menu == 3 && print == 1) {
+            puts("\n=========================");
             printf("Kelompok %s\n", temp->kelompok_tugas);
+            puts("=========================\n");
+            nomor = 1;
             print = 0;
         }
         else if (menu == 3 && temp->next != NULL && strcmp(temp->kelompok_tugas, temp->next->kelompok_tugas)) {
@@ -33,7 +36,9 @@ void viewAll(To_Do_List_Node *main_node, int menu) {
             print = 1;
         }
         if (menu == 4 && print == 1) {
-            printf("\nPrioritas %d\n", prioritas);
+            puts("\n================");
+            printf("Prioritas %d\n", prioritas);
+            puts("================\n");
             print = 0;
         }
 
@@ -66,15 +71,18 @@ void viewSpecific(To_Do_List_Node *main_node, int menu) {
     if (menu == 1) {   
         printf("Masukkan nama tugas : ");
         scanf("%[^\n]", will_find);
+        getchar();
         while (temp != NULL) {
             if (strcmp(lowerTheSentence(copied_main_node->nama_tugas), lowerTheSentence(will_find)) == 0) {  
                 day_left = dayLeft(temp);
+                puts("\n==============================");
                 printf("%d. Nama tugas    : %s\n", nomor, temp->nama_tugas);
                 printf("   Nama kelompok : %s\n", temp->kelompok_tugas);
                 printf("   Prioritas     : %d\n", temp->prioritas);
                 printf("   Deadline      : %d/%d/%d\n", temp->dl_dd, temp->dl_mm, temp->dl_yyyy);
-                if (day_left >= 0) printf("   Sisa Waktu    : %d hari\n\n", day_left);
+                if (day_left >= 0) printf("   Sisa Waktu    : %d hari\n", day_left);
                 else printf("   Sisa Waktu    : TERLAMBAT %d hari\n", abs(day_left));
+                puts("==============================\n");
                 nomor++;
             }
             copied_main_node = copied_main_node->next;
@@ -84,6 +92,7 @@ void viewSpecific(To_Do_List_Node *main_node, int menu) {
     else if (menu == 2) {
         printf("Masukkan nama kelompok tugas : ");
         scanf("%[^\n]", will_find);
+        getchar();
         while (temp != NULL) {
             if (strcmp(lowerTheSentence(copied_main_node->kelompok_tugas), lowerTheSentence(will_find)) == 0) {  
                 day_left = dayLeft(temp);             
@@ -91,7 +100,7 @@ void viewSpecific(To_Do_List_Node *main_node, int menu) {
                 printf("   Nama kelompok : %s\n", temp->kelompok_tugas);
                 printf("   Prioritas     : %d\n", temp->prioritas);
                 printf("   Deadline      : %d/%d/%d\n", temp->dl_dd, temp->dl_mm, temp->dl_yyyy);
-                if (day_left >= 0) printf("   Sisa Waktu    : %d hari\n\n", day_left);
+                if (day_left >= 0) printf("   Sisa Waktu    : %d hari\n", day_left);
                 else printf("   Sisa Waktu    : TERLAMBAT %d hari\n", abs(day_left));
                 nomor++;
             }
@@ -140,7 +149,6 @@ void selectionSortList(To_Do_List_Node **main_node, int menu) {
     }
 }
 
-// Masih mikir
 void sortKelompok(To_Do_List_Node *main_node) {
     int banyak_kelompok = 0;
     To_Do_List_Node *temp = main_node;

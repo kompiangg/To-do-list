@@ -161,12 +161,10 @@ int main() {
                         printf("Input : ");
                         scanf("%d", &menu);
                         getchar();
-                        getchar();
                     
                         if (menu > 0 && menu < 3) {
                             clearTheScreen();
                             viewSpecific(main_node, menu);
-                            getchar();
                             tahan();
                         }
                         else if (menu == 0) {

@@ -8,8 +8,6 @@
         
     } To_Do_List_Node;
     
-    // Tambahkan ADT yang kalian perlukan
-
     typedef struct date {
         int dd, mm, yyyy;
     } date;
