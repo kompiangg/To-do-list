@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 #include <ctype.h>
@@ -23,4 +24,22 @@ void getTheDate(date *date_now) {
 char *lowerTheSentence(char *sentence) {
     for (int i = 0 ; sentence[i] ; i++) sentence[i] = tolower(sentence[i]);
     return sentence;
+}
+
+int isEmpty(To_Do_List_Node *main_node) {
+    if (main_node == NULL) {
+        puts("To-do list masih kosong");
+        return 1;
+    }
+    return 0;
+}
+
+void clearTheScreen() {
+    clear();
+    puts("Program To-do list\n");
+}
+
+void tahan() {
+    puts("\nTekan enter untuk melanjutkan...");
+    getchar();
 }

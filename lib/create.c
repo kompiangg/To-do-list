@@ -107,7 +107,7 @@ void addProcess(To_Do_List_Node **main_node) {
     int back, back_to = 1;
     getTheDate(&date_now);
 
-    printf("\n  ======= Guide =======  \n");
+    printf("  ======= Guide =======  \n");
     printf("Selamat datang di add proses\n");
     printf("apabila Anda bingung tentang\n");
     printf("properti yang akan diisi,\n");
