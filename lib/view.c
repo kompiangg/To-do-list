@@ -15,9 +15,18 @@ int dayLeft(To_Do_List_Node *temp_main_node) {
 
 void viewAll(To_Do_List_Node *main_node, int menu) {
     To_Do_List_Node *temp = main_node;
-    int nomor = 1, day_left, prioritas = 0, print = 0;
+    int nomor = 1, day_left, prioritas = 0, print = 1;
 
     while (temp != NULL) {
+        // Menu 3 (Sort menurut kelompok)
+        if (menu == 3 && print == 1) {
+            printf("Kelompok %s\n", temp->kelompok_tugas);
+            print = 0;
+        }
+        else if (menu == 3 && temp->next != NULL && strcmp(temp->kelompok_tugas, temp->next->kelompok_tugas)) {
+            print = 1;
+        }
+        // Menu 4 (Sort menurut prioritas)
         while(menu == 4 && temp->prioritas != prioritas) {
             prioritas++;
             nomor = 1;
@@ -27,6 +36,7 @@ void viewAll(To_Do_List_Node *main_node, int menu) {
             printf("\nPrioritas %d\n", prioritas);
             print = 0;
         }
+
         day_left = dayLeft(temp);
         printf("%d. Nama tugas    : %s\n", nomor, temp->nama_tugas);
         printf("   Nama kelompok : %s\n", temp->kelompok_tugas);
@@ -131,9 +141,22 @@ void selectionSortList(To_Do_List_Node **main_node, int menu) {
 }
 
 // Masih mikir
-void sortKelompok() {
+void sortKelompok(To_Do_List_Node *main_node) {
     int banyak_kelompok = 0;
+    To_Do_List_Node *temp = main_node;
+    To_Do_List_Node *copied_main_node = NULL;
+    copyLinkedList(&copied_main_node, temp);
 
+    for (To_Do_List_Node *current = copied_main_node ; current != NULL ; current = current->next) {
+        for (To_Do_List_Node *index = current->next ; index != NULL ; index = index->next) {
+            if(!strcmp(current->kelompok_tugas, index->kelompok_tugas) && current->next != NULL) {
+                swapValueLinkedList(&index, &(current->next));
+                break;
+            }
+        }
+    }
+
+    viewAll(copied_main_node, 3);
 }
 
 void sortPriority(To_Do_List_Node *main_node) {
@@ -143,7 +166,6 @@ void sortPriority(To_Do_List_Node *main_node) {
 
     copyLinkedList(&copied_main_node, temp);
     selectionSortList(&copied_main_node, 1);
-    puts("here");
 
     viewAll(copied_main_node, 4);
 }

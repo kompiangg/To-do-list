@@ -1,1 +1,6 @@
-agus|arya|1|24/2/2022
+tumis|goreng|2|28/5/2021
+FP Alpro|kuliah|1|25/5/2021
+ayam|goreng|1|1/1/2022
+Matdis|kuliah|1|24/5/2021
+tumis|ayam|4|12/6/2021
+ayam|goreng|1|1/1/2021

@@ -137,7 +137,7 @@ int main() {
                     }
                 }
                 else if (menu == 3) {
-
+                    sortKelompok(main_node);
                 }
                 else if (menu == 4) {
                     sortPriority(main_node);
