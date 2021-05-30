@@ -5,34 +5,31 @@
 #include "our_module.h"
 
 void editNamaTugas(To_Do_List_Node **main_node){
-    To_Do_List_Node *temp = main_node;
+    To_Do_List_Node *temp = *main_node;
     char new[50], huruf[50];
     printf("Masukkan nama tugas yang ingin dicari: ");
     scanf("%[^\n]", &huruf);
     
-    if (temp!=NULL){
-        while(1){
-            if (strcmp(temp->nama_tugas,huruf)==0){
-                printf("Masukkan nama tugas baru: ");
-                scanf(" %49[^\n]",&new);
-                getchar();
-                strcpy(temp->nama_tugas, new);
-                puts("Data berhasil disimpan");
-            }
-            if (temp==NULL){
-                temp=temp->next;
-            }else {
-                puts("DATA yang Anda cari tidak ada!");
-                break;
-            }
+    while(temp!=NULL){
+        if (strcmp(temp->nama_tugas,huruf)==0){
+            printf("Masukkan nama tugas baru: ");
+            scanf(" %49[^\n]",&new);
+            getchar();
+            strcpy(temp->nama_tugas, new);
+            puts("Data berhasil disimpan");
+            return ;
         }
-    
+        temp=temp->next;
+    }
+
+    if (temp == NULL) {
+        puts("DATA yang Anda cari tidak ada!");
     }
 }
 
 
 void editKelompokTugas(To_Do_List_Node **main_node){
-    To_Do_List_Node *temp = main_node;
+    To_Do_List_Node *temp = *main_node;
     char new[50], huruf[50];
 
     printf("Masukkan nama tugas yang ingin dicari: ");
@@ -43,20 +40,23 @@ void editKelompokTugas(To_Do_List_Node **main_node){
             printf("Masukkan kelompok tugas baru: ");
             scanf(" %49[^\n]",&new);
             strcpy(temp->kelompok_tugas, new);
+            puts("Data berhasil disimpan");
             return;
 
         }
-        if (temp==NULL){
-            temp=temp->next;
-        }else {
-            puts("DATA yang Anda cari tidak ada!");
-            break;
-        }
+        temp=temp->next;
+
     }
+
+    if (temp == NULL) {
+        puts("DATA yang Anda cari tidak ada!");
+    }
+
+    
 }
 
 void editPrioritas(To_Do_List_Node **main_node){
-    To_Do_List_Node *temp = main_node;
+    To_Do_List_Node *temp = *main_node;
     int new;
     char huruf[50];
 
@@ -75,13 +75,12 @@ void editPrioritas(To_Do_List_Node **main_node){
             return;
 
         }
-        if (temp==NULL){
-            temp=temp->next;
-        }else {
-            puts("DATA yang Anda cari tidak ada!");
-            break;
-        }
-      
+        temp=temp->next;
+
+    }
+    
+    if (temp == NULL) {
+        puts("DATA yang Anda cari tidak ada!");
     }
 }
 
@@ -98,6 +97,7 @@ void editDeadline(To_Do_List_Node **main_node){
 
     while (temp!=NULL){
         if (strcmp(temp->nama_tugas,huruf)==0){
+            
             while(1){
                 printf("Masukkan deadline tugas baru (dd/mm/yyyy): ");
                 scanf("%d/%d/%d", &temp_input.dl_dd, &temp_input.dl_mm, &temp_input.dl_yyyy);
@@ -113,19 +113,21 @@ void editDeadline(To_Do_List_Node **main_node){
                         temp->dl_yyyy=temp_input.dl_yyyy;
                         puts("Data berhasil disimpan!");
                         break;
-                }
+                    }
             }
-            temp=temp->next; 
-        }else{
-            puts("DATA yang Anda cari tidak ada!");
+            return;
+             
         }
-        break;
+        temp=temp->next;
+        
     }
-     
+    
+    if (temp == NULL) {
+        puts("DATA yang Anda cari tidak ada!");
+    }
     
 }
 
-//MASIH BELUM FIX
 void delete(To_Do_List_Node **main_node){
     To_Do_List_Node *temp = *main_node, *prev;
 
@@ -166,7 +168,7 @@ void delete(To_Do_List_Node **main_node){
 }
 
 void overwriteFile(To_Do_List_Node **main_node){
-    To_Do_List_Node *temp = main_node;
+    To_Do_List_Node *temp = *main_node;
     FILE *read_and_write = fopen("file\\to_do_list.txt", "w+");
     fprintf(read_and_write, "%s|%s|%d|%d/%d/%d\n",temp->nama_tugas, temp->kelompok_tugas,\
                                                   temp->prioritas, temp->dl_dd,\
