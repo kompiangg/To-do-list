@@ -4,4 +4,5 @@
     #include "create.h"
     #include "universal_function.h"
     #include "view.h"
+    #include "edit.h"
 #endif

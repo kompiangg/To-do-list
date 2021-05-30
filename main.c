@@ -53,27 +53,29 @@ int main() {
                         scanf("%d", &menu);
                         getchar();
                         if (menu == 1) {
-                            
+                            editNamaTugas(&main_node);
                         }
                         else if (menu == 2) {
-                            
+                            editKelompokTugas(&main_node);
                         }
                         else if (menu == 3) {
-
+                            editPrioritas(&main_node);
                         }
                         else if (menu == 4) {
-
+                            editDeadline(&main_node);
                         }
                         else if (menu == 0) {
-                            puts("\nPilih antara angka 0 hingga 2");
+                            break;
                         }
                         else {
-
+                             puts("\nPilih antara angka 0 hingga 4");
+                             getchar();
+                             continue;
                         }
                     }
                 }
                 else if (menu == 2) {
-
+                    delete(&main_node);
                 }
                 else if (menu == 0) {
                     break;
@@ -83,6 +85,10 @@ int main() {
                     getchar();
                     continue;
                 }
+                overwriteFile(&main_node);
+                //overwriteFile();
+                //open file read write 
+
             }
         }
         else if (menu == 3) {
