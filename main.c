@@ -9,6 +9,7 @@ int main() {
 
     initToDoListFromFile(&main_node);
     while(1) {
+        clearTheScreen();
         puts("==============");
         puts("| MENU UTAMA |");
         puts("==============");
@@ -22,17 +23,18 @@ int main() {
         getchar();
 
         if (menu == 1) {
+            clearTheScreen();
             addProcess(&main_node);
         }
         else if (menu == 2) {
             while (1) {
-                viewAll(main_node, 0);
+                clearTheScreen();
                 puts("===============");
                 puts("|  MENU EDIT  |");
                 puts("===============");
                 puts(" 1. Update");
                 puts(" 2. Remove");
-                puts(" 0. Exit");
+                puts(" 0. Back");
                 puts("===============");
                 printf("Input : ");
                 scanf("%d", &menu);
@@ -40,6 +42,7 @@ int main() {
 
                 if (menu == 1) {
                     while (1) {
+                        clearTheScreen();
                         puts("=====================");
                         puts("|    MENU UPDATE    |");
                         puts("=====================");
@@ -47,7 +50,7 @@ int main() {
                         puts(" 2. Kelompok tugas");
                         puts(" 3. Prioritas");
                         puts(" 4. Deadline");
-                        puts(" 0. Exit");
+                        puts(" 0. Back");
                         puts("=====================");
                         printf("Input : ");
                         scanf("%d", &menu);
@@ -93,6 +96,7 @@ int main() {
         }
         else if (menu == 3) {
             while (1) {
+                clearTheScreen();
                 puts("===========================");
                 puts("|        MENU VIEW        |");
                 puts("===========================");
@@ -101,54 +105,87 @@ int main() {
                 puts(" 3. Sort menurut kelompok");
                 puts(" 4. Sort menurut prioritas");
                 puts(" 5. Sort menurut deadline");
-                puts(" 0. Exit");
+                puts(" 0. Back");
                 puts("===========================");
                 printf("Input : ");
                 scanf("%d", &menu);
                 getchar();
 
                 if (menu == 1) {
+                    clearTheScreen();
+                    if (isEmpty(main_node)) {
+                        continue;
+                        tahan();
+                    }
                     viewAll(main_node, 0);
+                    tahan();
                 }
                 else if (menu == 2) {
+                    clearTheScreen();
+                    if (isEmpty(main_node)) {
+                        continue;
+                        tahan();
+                    }
                     while(1) {
+                        clearTheScreen();
                         puts("=========================");
                         puts("|     Cari Spesifik     |");
                         puts("=========================");
                         puts(" 1. Nama tugas");
                         puts(" 2. Kelompok tugas");
-                        puts(" 0. Exit");
+                        puts(" 0. Back");
                         puts("=========================");
                         printf("Input : ");
                         scanf("%d", &menu);
                         getchar();
                     
                         if (menu > 0 && menu < 3) {
+                            clearTheScreen();
                             viewSpecific(main_node, menu);
+                            getchar();
+                            tahan();
                         }
                         else if (menu == 0) {
                             break;
                         }
                         else {
                             puts("\nPilih antara angka 0 hingga 2");
-                            getchar();
+                            tahan();
                             continue;
                         }
                     }
                 }
                 else if (menu == 3) {
+                    clearTheScreen();
+                    if (isEmpty(main_node)) {
+                        continue;
+                        tahan();
+                    }
                     sortKelompok(main_node);
+                    tahan();
                 }
                 else if (menu == 4) {
+                    clearTheScreen();
+                    if (isEmpty(main_node)) {
+                        continue;
+                        tahan();
+                    }
                     sortPriority(main_node);
+                    tahan();
                 }
                 else if (menu == 5) {
+                    clearTheScreen();
+                    if (isEmpty(main_node)) {
+                        continue;
+                        tahan();
+                    }
                     sortDeadline(main_node);
+                    tahan();
                 }
                 else if (menu == 0) break;
                 else {
                     puts("\nPilih antara angka 0 hingga 5");
-                    getchar();
+                    tahan();
                     continue;
                 }
             }
@@ -156,7 +193,7 @@ int main() {
         else if (menu == 0) break;
         else {
             puts("\nPilih antara angka 0 hingga 3");
-            getchar();
+            tahan();
             continue;
         }
     }

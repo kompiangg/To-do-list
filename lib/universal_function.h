@@ -4,4 +4,9 @@
     void clear();
     void getTheDate(date *date_now);
     char *lowerTheSentence(char *sentence);
+    int isEmpty(To_Do_List_Node *main_node);
+    void clearTheScreen();
+    void tahan();
+    void red();
+    void reset();
 #endif
