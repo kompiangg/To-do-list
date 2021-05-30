@@ -43,3 +43,15 @@ void tahan() {
     puts("\nTekan enter untuk melanjutkan...");
     getchar();
 }
+
+void overwriteFile(To_Do_List_Node **main_node){
+    To_Do_List_Node *temp = *main_node;
+    FILE *read_and_write = fopen("file\\to_do_list.txt", "w+");
+    while(temp != NULL) {
+        fprintf(read_and_write, "%s|%s|%d|%d/%d/%d\n",temp->nama_tugas, temp->kelompok_tugas,\
+                                                    temp->prioritas, temp->dl_dd,\
+                                                    temp->dl_mm, temp->dl_yyyy);
+        temp = temp->next;
+    }
+    fclose(read_and_write);
+}

@@ -9,4 +9,5 @@
     void tahan();
     void red();
     void reset();
+    void overwriteFile(To_Do_List_Node **main_node);
 #endif

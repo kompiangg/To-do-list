@@ -6,6 +6,4 @@
     void editKelompokTugas(To_Do_List_Node **main_node);
     void editPrioritas(To_Do_List_Node **main_node);
     void editDeadline(To_Do_List_Node **main_node);
-    void delete(To_Do_List_Node **main_node);
-    void overwriteFile(To_Do_List_Node **main_node);
 #endif

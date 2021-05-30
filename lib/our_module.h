@@ -5,4 +5,5 @@
     #include "universal_function.h"
     #include "view.h"
     #include "edit.h"
+    #include "delete.h"
 #endif

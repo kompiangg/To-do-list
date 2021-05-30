@@ -25,6 +25,7 @@ int main() {
         if (menu == 1) {
             clearTheScreen();
             addProcess(&main_node);
+            tahan();
         }
         else if (menu == 2) {
             while (1) {
@@ -56,29 +57,54 @@ int main() {
                         scanf("%d", &menu);
                         getchar();
                         if (menu == 1) {
+                            if (isEmpty(main_node)) {
+                                tahan();
+                                continue;
+                            }
                             editNamaTugas(&main_node);
+                            tahan();
                         }
                         else if (menu == 2) {
+                            if (isEmpty(main_node)) {
+                                tahan();
+                                continue;
+                            }
                             editKelompokTugas(&main_node);
+                            tahan();
                         }
                         else if (menu == 3) {
+                            if (isEmpty(main_node)) {
+                                tahan();
+                                continue;
+                            }
                             editPrioritas(&main_node);
+                            tahan();
                         }
                         else if (menu == 4) {
+                            if (isEmpty(main_node)) {
+                                tahan();
+                                continue;
+                            }
                             editDeadline(&main_node);
+                            tahan();
                         }
                         else if (menu == 0) {
                             break;
                         }
                         else {
-                             puts("\nPilih antara angka 0 hingga 4");
-                             getchar();
-                             continue;
+                            puts("\nPilih antara angka 0 hingga 4");
+                                getchar();
+                                continue;
                         }
                     }
                 }
                 else if (menu == 2) {
-                    delete(&main_node);
+                    if (isEmpty(main_node)) {
+                        tahan();
+                        continue;
+                    }
+                    removeToDoList(&main_node);
+                    tahan();
                 }
                 else if (menu == 0) {
                     break;
@@ -89,9 +115,6 @@ int main() {
                     continue;
                 }
                 overwriteFile(&main_node);
-                //overwriteFile();
-                //open file read write 
-
             }
         }
         else if (menu == 3) {
@@ -114,8 +137,8 @@ int main() {
                 if (menu == 1) {
                     clearTheScreen();
                     if (isEmpty(main_node)) {
-                        continue;
                         tahan();
+                        continue;
                     }
                     viewAll(main_node, 0);
                     tahan();
@@ -123,8 +146,8 @@ int main() {
                 else if (menu == 2) {
                     clearTheScreen();
                     if (isEmpty(main_node)) {
-                        continue;
                         tahan();
+                        continue;
                     }
                     while(1) {
                         clearTheScreen();
@@ -137,6 +160,7 @@ int main() {
                         puts("=========================");
                         printf("Input : ");
                         scanf("%d", &menu);
+                        getchar();
                         getchar();
                     
                         if (menu > 0 && menu < 3) {
@@ -158,8 +182,8 @@ int main() {
                 else if (menu == 3) {
                     clearTheScreen();
                     if (isEmpty(main_node)) {
-                        continue;
                         tahan();
+                        continue;
                     }
                     sortKelompok(main_node);
                     tahan();
@@ -167,8 +191,8 @@ int main() {
                 else if (menu == 4) {
                     clearTheScreen();
                     if (isEmpty(main_node)) {
-                        continue;
                         tahan();
+                        continue;
                     }
                     sortPriority(main_node);
                     tahan();
@@ -176,8 +200,8 @@ int main() {
                 else if (menu == 5) {
                     clearTheScreen();
                     if (isEmpty(main_node)) {
-                        continue;
                         tahan();
+                        continue;
                     }
                     sortDeadline(main_node);
                     tahan();

@@ -101,7 +101,7 @@ void saveToFile(To_Do_List_Node *temp_input) {
 }
 
 void addProcess(To_Do_List_Node **main_node) {
-    To_Do_List_Node temp_input;
+    To_Do_List_Node temp_input, *temp_travel;
     date date_now;
     char temp_text_prioritas[50], temp_text_date[50], *token;
     int back, back_to = 1;
@@ -123,6 +123,7 @@ void addProcess(To_Do_List_Node **main_node) {
     printf("====================\n");
 
     while (1) {
+        temp_travel = *main_node;
         back = 0;
 
         if (back_to > 0) back_to--;
@@ -132,6 +133,21 @@ void addProcess(To_Do_List_Node **main_node) {
                 printf(" * Nama Tugas : ");
                 scanf("%[^\n]", temp_input.nama_tugas);
                 getchar();
+                while (temp_travel != NULL) {
+                    if (!strcmp(lowerTheSentence(temp_travel->nama_tugas), lowerTheSentence(temp_input.nama_tugas))) {
+                        puts("\n========================================");
+                        puts("=== MASUKKAN NAMA TUGAS YANG BERBEDA ===");
+                        puts("===  NAMA TUGAS INI SUDAH DIGUNAKAN  ===");
+                        puts("========================================\n");
+                        back = 1;
+                        break;
+                    }
+                    temp_travel = temp_travel->next;
+                }
+                if (back == 1) {
+                    back = 0;
+                    continue;
+                }
             }
             if (strcmp(temp_input.nama_tugas, "-h") == 0) {
                 helpAddProcess(1);
@@ -174,7 +190,7 @@ void addProcess(To_Do_List_Node **main_node) {
                 scanf("%[^\n]", temp_text_prioritas);
                 getchar();
                 temp_input.prioritas = atoi(temp_text_prioritas);
-                if (temp_input.prioritas < 1 && temp_input.prioritas > 4) {
+                if (!(temp_input.prioritas >= 1 && temp_input.prioritas <= 4)) {
                     puts("\nMasukan angka antara 1 hingga 4\n");
                     continue;
                 }
@@ -209,8 +225,10 @@ void addProcess(To_Do_List_Node **main_node) {
 
                 if ((temp_input.dl_dd < date_now.dd && temp_input.dl_mm < date_now.mm) \
                     && temp_input.dl_yyyy < date_now.yyyy) {
-                        puts("\n=== TIDAK BOLEH MEMASUKAN TANGGAL ===");
-                        puts("  === SEBELUM TANGGAL HARI INI ===\n");
+                        puts("\n=====================================");
+                        puts("=== TIDAK BOLEH MEMASUKAN TANGGAL ===");
+                        puts("=== SEBELUM TANGGAL HARI INI ===");
+                        puts("=====================================\n");
                         continue;
                     }
             }
