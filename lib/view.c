@@ -79,7 +79,7 @@ void viewSpecific(To_Do_List_Node *main_node, int menu) {
             }
             copied_main_node = copied_main_node->next;
             temp = temp->next;
-        }
+        }   
     }
     else if (menu == 2) {
         printf("Masukkan nama kelompok tugas : ");
@@ -99,7 +99,7 @@ void viewSpecific(To_Do_List_Node *main_node, int menu) {
             temp = temp->next;
         }
     }
-    
+    if (temp == NULL && nomor == 1) puts("\nTo-do list yang anda cari tidak ada");
 }
 
 void swapValueLinkedList(To_Do_List_Node **node1, To_Do_List_Node **node2) {
