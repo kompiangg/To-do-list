@@ -223,14 +223,13 @@ void addProcess(To_Do_List_Node **main_node) {
                 token = strtok(NULL, "/");
                 temp_input.dl_yyyy = atoi(token);
 
-                if ((temp_input.dl_dd < date_now.dd || temp_input.dl_mm < date_now.mm) \
-                    && temp_input.dl_yyyy < date_now.yyyy) {
+                if (temp_input.dl_dd < date_now.dd || temp_input.dl_mm < date_now.mm || temp_input.dl_yyyy < date_now.yyyy) {
                         puts("\n=====================================");
                         puts("=== TIDAK BOLEH MEMASUKAN TANGGAL ===");
                         puts("=== SEBELUM TANGGAL HARI INI ===");
                         puts("=====================================\n");
                         continue;
-                    }
+                }
             }
             if (strcmp(temp_text_date, "-h") == 0) {
                 helpAddProcess(4);
