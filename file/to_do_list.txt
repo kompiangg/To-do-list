@@ -1,7 +1,0 @@
-agama|kuliah|4|23/5/2021
-sisop|kuliah|2|2/3/2021
-algoritma|kuliah|1|21/2/2021
-pancasila|kuliah|2|21/5/2021
-diskrit|kuliah|4|23/4/2021
-makan|rumah|1|12/2/2021
-minum|rumah|2|27/12/2021
