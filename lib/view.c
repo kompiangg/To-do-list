@@ -48,7 +48,7 @@ void viewAll(To_Do_List_Node *main_node, int menu) {
             nomor = 1;
             print = 0;
         }
-        else if (menu == 3 && temp->next != NULL && strcmp(temp->kelompok_tugas, temp->next->kelompok_tugas)) {
+        if (menu == 3 && temp->next != NULL && strcmp(temp->kelompok_tugas, temp->next->kelompok_tugas)) {
             print = 1;
         }
         // Menu 4 (Sort menurut prioritas)
