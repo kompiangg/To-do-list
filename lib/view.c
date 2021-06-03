@@ -3,12 +3,34 @@
 #include <string.h>
 #include "our_module.h"
 
+int isLeapYear(int year) {
+    if (((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0))
+        return 1;
+    else
+        return 0;
+}
+
+int dateInMonth(int month, int year) {
+    int date_month[12] = {31, 0, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+    if (month != 2) return date_month[month-1];
+    else {
+        if (isLeapYear(year) == 1) return 29;
+        else return 28;
+    }
+}
+
 int dayLeft(To_Do_List_Node *temp_main_node) {
     int day_left;
+    int day_from_month = 0;
     date date_now;
     getTheDate(&date_now);
-    day_left = (temp_main_node->dl_dd - date_now.dd) +\
-                30 * (temp_main_node->dl_mm - date_now.mm) + \
+
+    for (int i = date_now.mm ; i < temp_main_node->dl_mm; i++) {
+        day_from_month += dateInMonth(i, temp_main_node->dl_yyyy);
+    }
+    
+    day_left = (temp_main_node->dl_dd - date_now.dd) + day_from_month + \
                 365 * (temp_main_node->dl_yyyy - date_now.yyyy);
     return day_left;
 }

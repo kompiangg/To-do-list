@@ -1,5 +1,7 @@
 #ifndef __VIEW_
     #define __VIEW_
+    int isLeapYear(int year);
+    int dateInMonth(int month, int year);
     int dayLeft(To_Do_List_Node *temp_main_node);
     void viewAll(To_Do_List_Node *main_node, int menu);
     void viewSpecific(To_Do_List_Node *main_node, int menu);
